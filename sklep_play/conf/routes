@@ -1,0 +1,79 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                           controllers.HomeController.index()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+# products routes
+POST        /product              controllers.ProductController.addProduct()
+GET         /products             controllers.ProductController.getProducts
+GET         /product/:id          controllers.ProductController.getProduct(id: Long)
+DELETE      /product/:id          controllers.ProductController.deleteProduct(id: Long)
+POST        /product/:id          controllers.ProductController.updateProduct(id: Long)
+
+# category routes
+POST        /category              controllers.CategoryController.addCategory()
+GET         /categories            controllers.CategoryController.getCategories
+GET         /category/:id          controllers.CategoryController.getCategory(id: Long)
+DELETE      /category/:id          controllers.CategoryController.deleteCategory(id: Long)
+POST        /category/:id          controllers.CategoryController.updateCategory(id: Long)
+
+# user routes
+POST        /user                   controllers.UserController.addUser()
+GET         /users                  controllers.UserController.getUsers
+GET         /user/:id               controllers.UserController.getUser(id: Long)
+DELETE      /user/:id               controllers.UserController.deleteUser(id: Long)
+POST        /user/:id               controllers.UserController.updateUser(id: Long)
+
+# cart routes
+POST        /cart               controllers.CartController.addCart
+GET         /cart/:id           controllers.CartController.getCart(id: Long)
+DELETE      /cart/:id           controllers.CartController.deleteCart(id: Long)
+POST        /cart/:id           controllers.CartController.updateCart(id: Long)
+
+# order routes
+POST        /order              controllers.OrderController.addOrder
+GET         /orders             controllers.OrderController.getOrders
+GET         /order/:id          controllers.OrderController.getOrder(id: Long)
+DELETE      /order/:id          controllers.OrderController.deleteOrder(id: Long)
+POST        /order/:id          controllers.OrderController.updateOrder(id: Long)
+
+# cartItem routes
+POST        /cartItem           controllers.CartItemController.addCartItem
+GET         /cartItems          controllers.CartItemController.getCartItems
+GET         /cartItem/:id       controllers.CartItemController.getCartItem(id: Long)
+DELETE      /cartItem/:id       controllers.CartItemController.deleteCartItem(id: Long)
+POST        /cartItem/:id       controllers.CartItemController.updateCartItem(id: Long)
+
+# productReview routes
+POST        /productReview      controllers.ProductReviewController.addProductReview
+GET         /productReviews     controllers.ProductReviewController.getProductReviews
+GET         /productReview/:id  controllers.ProductReviewController.getProductReview(id: Long)
+DELETE      /productReview/:id  controllers.ProductReviewController.deleteProductReview(id: Long)
+POST        /productReview/:id  controllers.ProductReviewController.updateProductReview(id: Long)
+
+# userPayment data
+POST        /userPayment        controllers.UserPaymentController.addUserPayment
+GET         /userPayments       controllers.UserPaymentController.getUserPayments
+GET         /userPayment/:id    controllers.UserPaymentController.getUserPayment(id: Long)
+DELETE      /userPayment/:id    controllers.UserPaymentController.deleteUserPayment(id: Long)
+POST        /userPayment/:id    controllers.UserPaymentController.updateUserPayment(id: Long)
+
+# userAddress
+POST        /userAddress         controllers.UserAddressController.addUserAddress
+GET         /userAddresses       controllers.UserAddressController.getUserAddresses
+GET         /userAddress/:id     controllers.UserAddressController.getUserAddress(id: Long)
+DELETE      /userAddress/:id     controllers.UserAddressController.deleteUserAddress(id: Long)
+POST        /userAddress/:id     controllers.UserAddressController.updateUserAddress(id: Long)
+
+# discount
+POST        /discount            controllers.DiscountController.addDiscount
+GET         /discounts           controllers.DiscountController.getDiscounts
+GET         /discount/:id        controllers.DiscountController.getDiscount(id: Long)
+DELETE      /discount/:id        controllers.DiscountController.deleteDiscount(id: Long)
+POST        /discount/:id        controllers.DiscountController.updateDiscount(id: Long)
