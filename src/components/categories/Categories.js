@@ -12,10 +12,7 @@ import {
 } from "@material-ui/core";
 import FolderIcon from "@material-ui/icons/Folder";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
-import { Link } from "react-router-dom";
 import AddIcon from "@material-ui/icons/Add";
-import ProductService from "../../services/product";
 
 const Categories = () => {
   const [categories, setCategories] = useState();

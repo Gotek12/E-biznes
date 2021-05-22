@@ -17,7 +17,6 @@ function App() {
     <div>
       <NavMenu />
       <Switch>
-        <Route path="/" exact component={Home} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={Signup} />
         <Route path="/products" exact component={Products} />
@@ -27,6 +26,7 @@ function App() {
         <Route path="/tobuy" exact component={UserProductPage} />
         <Route path="/cart" exact component={Cart} />
         {/*<Route path="/admin" exact component={Admin} />*/}
+        <Route path="/" exact component={Home} />
       </Switch>
     </div>
   );

@@ -1,25 +1,66 @@
 import React from "react";
-import ProductService from "../../services/product";
+import { Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const Home = () => {
-  const getData = (e) => {
-    e.preventDefault();
-
-    ProductService.getProductById(0).then(
-      (data) => {
-        console.log(data);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  };
+  // todo remove after setting authorization
 
   return (
-    <div>
-      Hello in Sklepik
-      <Link to="product/2">to</Link>
+    <div className="outer">
+      <div className="inner3">
+        <Typography variant="h4" className="tx">
+          Admin
+        </Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          style={{ minHeight: "50px" }}
+          fullWidth
+          to="/products"
+          component={Link}
+        >
+          Products
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          style={{ minHeight: "50px" }}
+          fullWidth
+          to="/categories"
+          component={Link}
+        >
+          Categories
+        </Button>
+
+        <Typography variant="h4" className="tx">
+          User
+        </Typography>
+        <Button
+          variant="contained"
+          color="secondary"
+          size="large"
+          style={{ minHeight: "50px" }}
+          fullWidth
+          to="/tobuy"
+          component={Link}
+        >
+          Buy
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          style={{ minHeight: "50px" }}
+          fullWidth
+          to="/cart"
+          component={Link}
+        >
+          Cart
+        </Button>
+      </div>
     </div>
   );
 };
