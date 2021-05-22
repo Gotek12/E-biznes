@@ -49,7 +49,7 @@ class CartController @Inject()(cartsRepo: CartRepository, userRepository: UserRe
       },
       c => {
         cartsRepo.create(c.userId, new Date()).map { _ =>
-          Redirect(routes.CartController.addCart()).flashing("success" -> "cart created")
+          Redirect(routes.CartController.addCart).flashing("success" -> "cart created")
         }
       }
     )

@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.UserAddressController.addUserAddressHandle()) {
+@form(routes.UserAddressController.addUserAddressHandle) {
     @helper.CSRF.formField
     <select name="userId" id="userId">
     @for(u <- user){

@@ -60,7 +60,7 @@ class UserPaymentController @Inject()(userPaymentRepo: UserPaymentRepository, us
       },
       user => {
         userPaymentRepo.create(user.userId, user.paymentType, user.provider, user.accountNumber, user.expiry).map { _ =>
-          Redirect(routes.UserPaymentController.addUserPayment()).flashing("success" -> "userPayment.created")
+          Redirect(routes.UserPaymentController.addUserPayment).flashing("success" -> "userPayment.created")
         }
       }
     )

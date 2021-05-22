@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.OrderController.addOrderHandle()) {
+@form(routes.OrderController.addOrderHandle) {
     @helper.CSRF.formField
     <select name="userId" id="userId">
     @for(u <- user){

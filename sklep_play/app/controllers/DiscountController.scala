@@ -56,7 +56,7 @@ class DiscountController @Inject()(discountRepo: DiscountRepository, productRepo
       },
       dis => {
         discountRepo.create(dis.name, dis.discountPercentage, dis.expire, dis.productId).map { _ =>
-          Redirect(routes.DiscountController.addDiscount()).flashing("success" -> "discount created")
+          Redirect(routes.DiscountController.addDiscount).flashing("success" -> "discount created")
         }
       }
     )

@@ -64,7 +64,7 @@ class ProductReviewController @Inject()(productReviewRepo: ProductReviewReposito
       },
       add => {
         productReviewRepo.create(add.productId, add.date, add.description, add.userId).map { _ =>
-          Redirect(routes.ProductReviewController.addProductReview()).flashing("success" -> "review created")
+          Redirect(routes.ProductReviewController.addProductReview).flashing("success" -> "review created")
         }
       }
     )

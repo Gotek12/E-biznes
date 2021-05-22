@@ -2,7 +2,7 @@
 @import helper._
 
 @flash.get("success").getOrElse("")
-@form(routes.CategoryController.addCategoryHandle()) {
+@form(routes.CategoryController.addCategoryHandle) {
     @helper.CSRF.formField
     @inputText(category("name"))
     @inputText(category("description"))

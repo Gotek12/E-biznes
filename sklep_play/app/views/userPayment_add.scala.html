@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.UserPaymentController.addUserPaymentHandle()) {
+@form(routes.UserPaymentController.addUserPaymentHandle) {
 @helper.CSRF.formField
 <select name="userId" id="userId">
     @for(u <- user){

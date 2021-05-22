@@ -59,7 +59,7 @@ class ProductController @Inject()(productsRepo: ProductRepository, categoryRepo:
       },
       product => {
         productsRepo.create(product.name, product.description, product.categoryId, product.price, product.height, product.weight, product.width).map { _ =>
-          Redirect(routes.ProductController.addProduct()).flashing("success" -> "product created")
+          Redirect(routes.ProductController.addProduct).flashing("success" -> "product created")
         }
       }
     )

@@ -53,7 +53,7 @@ class UserController @Inject()(userRepo: UserRepository, cc: MessagesControllerC
       },
       user => {
         userRepo.create(user.nick, user.firstName, user.lastName, user.email, user.password, user.registeredAt, user.lastLogin).map { _ =>
-          Redirect(routes.UserController.addUser()).flashing("success" -> "user.created")
+          Redirect(routes.UserController.addUser).flashing("success" -> "user.created")
         }
       }
     )

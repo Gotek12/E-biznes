@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.CategoryController.updateCategoryHandle()) {
+@form(routes.CategoryController.updateCategoryHandle) {
     @helper.CSRF.formField
     <input name="id" id="id" value="@cat("id").value" type="hidden" />
     @inputText(cat("name"))

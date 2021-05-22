@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.DiscountController.addDiscountHandle()) {
+@form(routes.DiscountController.addDiscountHandle) {
     @helper.CSRF.formField
     <select name="productId" id="productId">
     @for(u <- product){

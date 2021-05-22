@@ -2,7 +2,7 @@
 @import helper._
 
 @flash.get("success").getOrElse("")
-@form(routes.ProductController.addProductHandle()) {
+@form(routes.ProductController.addProductHandle) {
     @helper.CSRF.formField
     @inputText(product("name"))
     @inputText(product("description"))

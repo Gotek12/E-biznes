@@ -4,7 +4,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.UserAddressController.updateUserAddressHandle()) {
+@form(routes.UserAddressController.updateUserAddressHandle) {
     @helper.CSRF.formField
     <input name="id" id="id" value="@add("id").value" type="hidden" />
 

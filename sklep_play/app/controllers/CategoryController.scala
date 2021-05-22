@@ -42,7 +42,7 @@ class CategoryController @Inject()(categoriesRepo: CategoryRepository, cc: Messa
       },
       category => {
         categoriesRepo.create(category.name, category.description).map { _ =>
-          Redirect(routes.CategoryController.addCategory()).flashing("success" -> "category.created")
+          Redirect(routes.CategoryController.addCategory).flashing("success" -> "category.created")
         }
       }
     )

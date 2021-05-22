@@ -2,7 +2,7 @@
 @import helper._
 
 @flash.get("success").getOrElse("")
-@form(routes.UserController.addUserHandle()) {
+@form(routes.UserController.addUserHandle) {
     @helper.CSRF.formField
     @inputText(user("nick"))
     @inputText(user("firstName"))

@@ -3,7 +3,7 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.CartController.addCartHandle()) {
+@form(routes.CartController.addCartHandle) {
     @helper.CSRF.formField
 
     <select name="userId" id="userId">

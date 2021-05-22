@@ -64,7 +64,7 @@ class OrderController @Inject()(orderRepo: OrderRepository, userRepository: User
       },
       add => {
         orderRepo.create(add.userId, add.status, add.items, new Date(), add.tax, add.price, add.shipping, add.payed, add.realized).map { _ =>
-          Redirect(routes.OrderController.addOrder()).flashing("success" -> "order created")
+          Redirect(routes.OrderController.addOrder).flashing("success" -> "order created")
         }
       }
     )

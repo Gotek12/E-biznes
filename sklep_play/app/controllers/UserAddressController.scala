@@ -59,7 +59,7 @@ class UserAddressController @Inject()(userAddressRepo: UserAddressRepository, us
       },
       add => {
         userAddressRepo.create(add.userId, add.city, add.postalCode, add.country, add.telephone, add.mobile, add.addressLine).map { _ =>
-          Redirect(routes.UserAddressController.addUserAddress()).flashing("success" -> "userAddress created")
+          Redirect(routes.UserAddressController.addUserAddress).flashing("success" -> "userAddress created")
         }
       }
     )

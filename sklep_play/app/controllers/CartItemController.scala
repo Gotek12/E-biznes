@@ -63,7 +63,7 @@ class CartItemController @Inject()(cartItemsRepo: CartItemRepository, cartReposi
       },
       add => {
         cartItemsRepo.create(add.quantity, add.productId, add.cartId).map { _ =>
-          Redirect(routes.CartItemController.addCartItem()).flashing("success" -> "cartItem created")
+          Redirect(routes.CartItemController.addCartItem).flashing("success" -> "cartItem created")
         }
       }
     )
