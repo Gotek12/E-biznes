@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
@@ -22,7 +22,7 @@ const NavMenu = () => {
   const classes = useStyles();
 
   useEffect(() => {
-    console.log("load")
+    console.log("load");
   }, []);
 
   return (

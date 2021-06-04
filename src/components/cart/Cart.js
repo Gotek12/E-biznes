@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ProductService from "../../services/product";
 import {
   Avatar,
   IconButton,
@@ -15,7 +14,6 @@ import CreditCardIcon from "@material-ui/icons/CreditCard";
 import { useContext } from "react";
 import AppContext from "../../common/store/AppContext";
 import RemoveIcon from "@material-ui/icons/Remove";
-import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
 
 const Cart = () => {
@@ -24,7 +22,7 @@ const Cart = () => {
 
   const priceFunction = () => {
     let cena = 0;
-    myContext.cartElement.products.map((el) => {
+    myContext.cartElement.products.forEach((el) => {
       cena += el.data.price * el.nr;
     });
     setCena({ price: cena });
@@ -67,14 +65,8 @@ const Cart = () => {
                     </ListItemAvatar>
                     <ListItemText
                       primary={`${el.data.name}`}
-                      // secondary={`${el.data.description}`}
                       secondary={`${el.nr}`}
                     />
-                    {/*<ListItemSecondaryAction>*/}
-                    {/*  <ListItemText*/}
-                    {/*    secondary={`cena: ${el.data.price * el.nr}`}*/}
-                    {/*  />*/}
-                    {/*</ListItemSecondaryAction>*/}
                     <ListItemSecondaryAction>
                       <IconButton
                         aria-label="edit"
@@ -95,8 +87,8 @@ const Cart = () => {
             : ""}
           <ListItem>
             <ListItemAvatar>
-              <IconButton aria-label="add">
-                <CreditCardIcon onClick={() => buyHandle()} />
+              <IconButton aria-label="add" onClick={() => buyHandle()}>
+                <CreditCardIcon />
               </IconButton>
             </ListItemAvatar>
             <ListItemSecondaryAction>

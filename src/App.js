@@ -4,7 +4,6 @@ import Signin from "./components/authorization/Signin";
 import Signup from "./components/authorization/Signup";
 import Home from "./components/home/Home";
 import NavMenu from "./common/nav/NavMenu";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Products from "./components/product/Products";
 import AddProduct from "./components/product/AddProduct";
 import Categories from "./components/categories/Categories";
@@ -20,7 +19,7 @@ function App() {
   });
   const addCartElement = (id, dataEl) => {
     console.log(dataEl);
-    if (cartElement.products.length == 0) {
+    if (cartElement.products.length === 0) {
       const neEl = {
         id: id,
         nr: 1,
