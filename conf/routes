@@ -161,4 +161,6 @@ POST         /api/productReview_update        controllers.ProductReviewControlle
 
 # Authentication
 GET         /authenticate/:provider        controllers.SocialAuthController.authenticate(provider: String)
-#GET         /authenticate/userInfo/:loginInfo   controllers.User2Controller.getUsersOauth(loginInfo: String)
+POST        /api/signUp                                   controllers.SignUpController.signUp
+POST        /api/signIn                                   controllers.SignInController.signIn
+POST        /api/signOut                                  controllers.SignInController.signOut

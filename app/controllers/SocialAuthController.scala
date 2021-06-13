@@ -2,6 +2,8 @@ package controllers
 
 import com.mohiva.play.silhouette.api.exceptions.ProviderException
 import com.mohiva.play.silhouette.impl.providers._
+import models.User2
+
 import javax.inject.Inject
 import play.api.mvc.{Action, AnyContent, Cookie, Request}
 import play.filters.csrf.CSRF.Token
@@ -18,7 +20,10 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
           case Left(result) => Future.successful(result)
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
-            _ <- userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
+            _ <- userRepository.isExist(profile.loginInfo.providerID, profile.email.getOrElse("")).map{
+              case Some(data) => userRepository.update(data.id, User2(data.id, data.loginInfo, data.email))
+              case None => userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
+            }
             _ <- authInfoRepository.save(profile.loginInfo, authInfo)
             authenticator <- authenticatorService.create(profile.loginInfo)
             value <- authenticatorService.init(authenticator)
@@ -26,6 +31,7 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
           } yield {
             val Token(name, value) = CSRF.getToken.get
             result.withCookies(Cookie(name, value, httpOnly = false))
+            result.withCookies(Cookie("email", profile.email.get, httpOnly = false))
           }
         }
       case _ => Future.failed(new ProviderException(s"Cannot authenticate with unexpected social provider $provider"))

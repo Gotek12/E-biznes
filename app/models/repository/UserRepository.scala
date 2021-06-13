@@ -41,6 +41,13 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(implici
       .headOption
   }.map(_.map(dto => toModel(dto)))
 
+  def isExist(providerId: String, email: String): Future[Option[User2]] = db.run {
+    user.filter(_.providerId === providerId)
+      .filter(_.email === email)
+      .result
+      .headOption
+  }.map(_.map(dto => toModel(dto)))
+
   def create(providerId: String, providerKey: String, email: String): Future[User2] = db.run {
     (user.map(c => (c.providerId, c.providerKey, c.email))
       returning user.map(_.id)
