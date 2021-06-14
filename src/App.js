@@ -12,6 +12,7 @@ import UserProductPage from "./components/product/UserProductPage";
 import Cart from "./components/cart/Cart";
 import AppContext from "./common/store/AppContext";
 import React, { useState } from "react";
+import Profile from "./components/profile/Profile";
 
 function App() {
   const [cartElement, setCartElement] = useState({
@@ -93,7 +94,7 @@ function App() {
         <Route path="/product/:id" exact component={ProductCart} />
         <Route path="/tobuy" exact component={UserProductPage} />
         <Route path="/cart" exact component={Cart} />
-        {/*<Route path="/admin" exact component={Admin} />*/}
+        <Route path="/profile" exact component={Profile} />
         <Route path="/" exact component={Home} />
       </Switch>
     </AppContext.Provider>
