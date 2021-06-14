@@ -39,6 +39,10 @@ class UserAddressRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(
     userAdd.filter(_.id === id).result.head
   }
 
+  def getByUserId(id: Long): Future[UserAddress] = db.run {
+    userAdd.filter(_.userId === id).result.head
+  }
+
   def update(id: Long, newElement: UserAddress): Future[Unit] = {
     val toUpdate: UserAddress = newElement.copy(id)
     db.run(userAdd.filter(_.id === id).update(toUpdate)).map(_ => ())

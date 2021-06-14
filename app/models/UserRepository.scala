@@ -39,6 +39,10 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(implici
     user.filter(_.id === id).result.head
   }
 
+  def getByEmail(email: String): Future[User] = db.run {
+    user.filter(_.email === email).result.head
+  }
+
   def update(id: Long, newElement: User): Future[Unit] = {
     val toUpdate: User = newElement.copy(id)
     db.run(user.filter(_.id === id).update(toUpdate)).map(_ => ())

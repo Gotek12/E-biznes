@@ -25,7 +25,10 @@ class SignUpController @Inject()(components: DefaultSilhouetteControllerComponen
         userRepository.create(
           CredentialsProvider.ID,
           signUpRequest.email,
-          signUpRequest.email
+          signUpRequest.email,
+          "USER",
+          signUpRequest.firstName,
+          signUpRequest.lastName
         ).flatMap { user =>
           authInfoRepository.add(loginInfo, authInfo)
             .map(_ => user)

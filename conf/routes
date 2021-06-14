@@ -160,7 +160,15 @@ DELETE       /api/productReview/:id          controllers.ProductReviewController
 POST         /api/productReview_update        controllers.ProductReviewController.updateProductReviewJson
 
 # Authentication
-GET         /authenticate/:provider        controllers.SocialAuthController.authenticate(provider: String)
+GET         /authenticate/:provider                       controllers.SocialAuthController.authenticate(provider: String)
 POST        /api/signUp                                   controllers.SignUpController.signUp
 POST        /api/signIn                                   controllers.SignInController.signIn
 POST        /api/signOut                                  controllers.SignInController.signOut
+
+# userData
+GET         /api/getUsert/:email                          controllers.User2Controller.getUserByEmail(email: String)
+POST         /api/userUpdate                                controllers.User2Controller.updateUserJson
+
+# orderSummary
+POST    /api/addOrder                                           controllers.OrderSummaryController.addOrder
+GET     /api/getOrders/:userId                                  controllers.OrderSummaryController.getOrders(userId: Long)

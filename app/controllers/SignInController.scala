@@ -22,12 +22,18 @@ class SignInController @Inject()(scc: DefaultSilhouetteControllerComponents, add
     val credentials = Credentials(signInRequest.email, signInRequest.password)
 
     credentialsProvider.authenticate(credentials).flatMap { loginInfo =>
-      userRepository.retrieve(loginInfo).flatMap {
+      userRepository.retrieveAdmin(loginInfo).flatMap {
         case Some(user) =>
           authenticateUser(user)
-            .map(_.withCookies(Cookie(name, value, httpOnly = false), Cookie("email", user.email, httpOnly = false)))
-        case None => Future.failed(new IdentityNotFoundException("Couldn't find user"))
+            .map(_.withCookies(Cookie(name, value, httpOnly = false), Cookie("email", user.email, httpOnly = false), Cookie("admin", "ADMIN", httpOnly = false)))
+        case None => userRepository.retrieve(loginInfo).flatMap {
+          case Some(user) =>
+            authenticateUser(user)
+              .map(_.withCookies(Cookie(name, value, httpOnly = false), Cookie("email", user.email, httpOnly = false)))
+          case None => Future.failed(new IdentityNotFoundException("Couldn't find user"))
+        }
       }
+
     }.recover {
       case _: ProviderException =>
         Forbidden("Wrong credentials")

@@ -1,12 +1,13 @@
 package controllers
 
 import com.mohiva.play.silhouette.api.LoginInfo
+import models.{User, User2}
 import models.repository.UserRepository
-import play.api.libs.json.Json
-import play.api.mvc.{MessagesAbstractController, MessagesControllerComponents}
+import play.api.libs.json.{JsValue, Json}
+import play.api.mvc.{Action, MessagesAbstractController, MessagesControllerComponents}
 
 import javax.inject.Inject
-import scala.concurrent.ExecutionContext
+import scala.concurrent.{ExecutionContext, Future}
 
 class User2Controller @Inject()(userRepo: UserRepository, cc: MessagesControllerComponents)(implicit ec: ExecutionContext) extends MessagesAbstractController(cc) {
 
@@ -16,4 +17,22 @@ class User2Controller @Inject()(userRepo: UserRepository, cc: MessagesController
       Ok(Json.toJson(seq))
     }
   }
+
+  def getUserByEmail(email: String) = Action.async {
+    val user = userRepo.getByEmail(email)
+    user.map { seq =>
+      Ok(Json.toJson(seq))
+    }
+  }
+
+  def updateUserJson: Action[JsValue] = Action.async(parse.json) { request =>
+
+    request.body.validate[User2].map {
+      user =>
+        userRepo.updateJson(user.id, User2(user.id, user.loginInfo, user.email, user.role, user.firstName, user.lastName)).map { res =>
+          Ok(Json.toJson(res))
+        }
+    }.getOrElse(Future.successful(BadRequest("incorrect data")))
+  }
+
 }

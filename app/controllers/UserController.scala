@@ -118,6 +118,13 @@ class UserController @Inject()(userRepo: UserRepository, cc: MessagesControllerC
     }
   }
 
+  def getUserByEmailJson(email: String) = Action.async {
+    val user = userRepo.getByEmail(email)
+    user.map { seq =>
+      Ok(Json.toJson(seq))
+    }
+  }
+
   def addUserJson(): Action[JsValue] = Action.async(parse.json) { implicit request =>
 
     println(request.body)

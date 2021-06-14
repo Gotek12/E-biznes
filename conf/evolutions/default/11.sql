@@ -6,7 +6,10 @@ CREATE TABLE "user2"
     "id"          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "providerId"  VARCHAR NOT NULL,
     "providerKey" VARCHAR NOT NULL,
-    "email"       VARCHAR NOT NULL
+    "email"       VARCHAR NOT NULL,
+    "role"        VARCHAR NOT NULL,
+    "firstName"     VARCHAR NOT NULL,
+    "lastName"      VARCHAR NOT NULL
 );
 
 CREATE TABLE "authToken"
@@ -36,9 +39,18 @@ CREATE TABLE "oAuth2Info"
     "expiresIn"   INTEGER
 );
 
+CREATE TABLE "orderSummary"
+(
+    "id"          INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "userId"  VARCHAR NOT NULL,
+    "createdAt" DATE NOT NULL,
+    "price" DOUBLE NOT NULL
+);
+
 
 # --- !Downs
 
+DROP TABLE "orderSummary";
 DROP TABLE "user2";
 DROP TABLE "authToken";
 DROP TABLE "passwordInfo";

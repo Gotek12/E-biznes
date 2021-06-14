@@ -21,8 +21,8 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
           case Right(authInfo) => for {
             profile <- p.retrieveProfile(authInfo)
             _ <- userRepository.isExist(profile.loginInfo.providerID, profile.email.getOrElse("")).map{
-              case Some(data) => userRepository.update(data.id, User2(data.id, data.loginInfo, data.email))
-              case None => userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""))
+              case Some(data) => userRepository.update(data.id, User2(data.id, data.loginInfo, data.email, "USER", "-", "-"))
+              case None => userRepository.create(profile.loginInfo.providerID, profile.loginInfo.providerKey, profile.email.getOrElse(""), "USER", "-", "-")
             }
             _ <- authInfoRepository.save(profile.loginInfo, authInfo)
             authenticator <- authenticatorService.create(profile.loginInfo)

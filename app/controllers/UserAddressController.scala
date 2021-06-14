@@ -129,7 +129,7 @@ class UserAddressController @Inject()(userAddressRepo: UserAddressRepository, us
   }
 
   def getUserAddressesJson(id: Long) = Action.async {
-    val user = userAddressRepo.getById(id)
+    val user = userAddressRepo.getByUserId(id)
     user.map { seq =>
       Ok(Json.toJson(seq))
     }
