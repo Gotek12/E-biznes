@@ -38,7 +38,7 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
     }).recover {
       case e: ProviderException =>
         logger.error("Unexpected provider error", e)
-        Forbidden("Forbidden1234")
+        Forbidden("Forbidden1234" + e.toString)
     }
   })
 }
