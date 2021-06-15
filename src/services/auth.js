@@ -20,7 +20,7 @@ class AuthService {
   }
 
   signUp(email, firstName, lastName, password) {
-    return axios.post("signUp", {
+    return axios.post("https://sklep-backend.azurewebsites.net/api/signUp", {
       email: email,
       password: password,
       firstName: firstName,
