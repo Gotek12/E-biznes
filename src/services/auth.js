@@ -3,7 +3,7 @@ import axios from "axios";
 class AuthService {
   async signIn(email, password) {
     return axios
-      .post("http://localhost:9000/api/signIn", {
+      .post("https://sklep-backend.azurewebsites.net/api/signIn", {
         email,
         password,
       })
