@@ -27,7 +27,8 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
             _ <- authInfoRepository.save(profile.loginInfo, authInfo)
             authenticator <- authenticatorService.create(profile.loginInfo)
             value <- authenticatorService.init(authenticator)
-            result <- authenticatorService.embed(value, Redirect("https://react-sklep.azurewebsites.net"))
+//            result <- authenticatorService.embed(value, Redirect("https://react-sklep.azurewebsites.net"))
+            result <- authenticatorService.embed(value, Redirect(s"https://react-sklep.azurewebsites.net/?email=${profile.email.get}"))
           } yield {
             val Token(name, value) = CSRF.getToken.get
             result.withCookies(Cookie(name, value, httpOnly = false))
@@ -38,7 +39,7 @@ class SocialAuthController @Inject()(scc: DefaultSilhouetteControllerComponents,
     }).recover {
       case e: ProviderException =>
         logger.error("Unexpected provider error", e)
-        Forbidden("Forbidden1234" + e.toString)
+        Forbidden("Forbidden" + e.toString)
     }
   })
 }
