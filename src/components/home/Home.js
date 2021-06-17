@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "./Home.scss";
 import MenuItem from "../../common/HomeMenuItem/MenuItem";
-import axios from "axios";
 
 const Home = () => {
   const [user, setUser] = useState({});
+  let location = useLocation();
 
   const getAdmin = () => {
-    if (document.cookie.split("; ").find((row) => row.startsWith("admin="))) {
+    if (document.cookie.split("; ").find((row) => row.startsWith("role=ADMIN"))) {
       return true;
     }
     return false;
   };
 
   useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const paramEmail = query.get("email");
+    if (paramEmail) {
+      document.cookie = `role=USER; path=/`;
+      document.cookie = `email=${paramEmail}; path=/`;
+      document.cookie = `oAuth=true; path=/`;
+      window.location.href = "/";
+    }
+
     setUser({ admin: getAdmin() });
   }, []);
 

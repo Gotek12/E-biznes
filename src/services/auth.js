@@ -3,15 +3,13 @@ import axios from "axios";
 class AuthService {
   async signIn(email, password) {
     return axios
-      .post("https://sklep-backend.azurewebsites.net/api/signIn", {
+      .post("http://localhost:9000/api/signIn", {
         email,
         password,
       })
       .then((response) => {
-        if (response.headers.authorization && response.headers.userinfo) {
-          localStorage.setItem("https://sklep-backend.azurewebsites.net/api/user", JSON.stringify(response.headers));
-        }
-        return response.data;
+        document.cookie = `role=${response.data.role}; path=/`;
+        document.cookie = `email=${response.data.email}; path=/`;
       });
   }
 
@@ -20,6 +18,7 @@ class AuthService {
   }
 
   signUp(email, firstName, lastName, password) {
+    //"http://localhost:9000/api/signUp"
     return axios.post("https://sklep-backend.azurewebsites.net/api/signUp", {
       email: email,
       password: password,
